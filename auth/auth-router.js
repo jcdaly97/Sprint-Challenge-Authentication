@@ -39,7 +39,7 @@ router.post('/login', (req, res) => {
     })
     .catch(err=>{
       res.status(500).json({
-        message: 'trouble logging in'
+        message: 'no user with that username'
       })
     })
   
@@ -50,7 +50,7 @@ function createToken(user){
     sub: user.id,
     username: user.username
   }
-  const secret = 'shhhhhhhhhh'
+  const secret = process.env.JWT_SECRET || 'thisisasecret'
   const options = {
     expiresIn: '1d'
   }

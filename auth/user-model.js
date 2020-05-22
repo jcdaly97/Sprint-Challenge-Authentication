@@ -17,7 +17,7 @@ function getUsersBy(param){
 async function addUser(user){
     try{
         const [newID] = await db('users').insert(user)
-        return getUsersBy({id: newID})
+        return getUsersBy({id: newID}).select('id', 'username').first()
     }catch(err){
         throw err
     }
